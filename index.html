@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Clou.Ok</title>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="logo">Clou.Ok</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Inicio</a></li>
+          <li><a href="./pages/uñas.html" target="_blank">Uñas</a></li>
+          <li>
+            <a href="./pages/peluqueria.html" target="_blank">Peluquería</a>
+          </li>
+          <li>
+            <a href="./pages/masoterapia.html" target="_blank">Masoterapia</a>
+          </li>
+          <li><a href="./pages/contacto.html" target="_blank">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="btn-cita">Reservar cita</a>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+      <h1>
+        Descubrí tu mejor versión con nuestros tratamientos estéticos
+        personalizados.
+      </h1>
+      <section class="bio">
+        <p>Hola, mi nombre es Carina.</p>
+        <p>
+          Me dedico al área de la estética con mucha pasión. Todos mis servicios
+          fueron aprendidos y perfeccionados por profesionales para ofrecerte
+          una experiencia única.
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="nav-actions">
+        <a href="https://wa.me/59891340661" target="_blank" class="icon"
+          ><i class="fab fa-whatsapp"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/cloustudio.ok"
+          target="_blank"
+          class="icon"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="mailto:correo@example.com" class="icon"
+          ><i class="fas fa-envelope"></i
+        ></a>
+      </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h2>Reservar Cita</h2>
+        <form>
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required />
+
+          <label for="contacto">WhatsApp</label>
+          <input type="text" id="contacto" placeholder="Tu contacto" required />
+
+          <label for="servicio">Servicio:</label>
+          <select id="servicio">
+            <option value="Uñas">Uñas</option>
+            <option value="Peluquería">Peluquería</option>
+            <option value="Masoterapia">Masoterapia</option>
+          </select>
+
+          <button type="button" class="enviar-btn" id="enviarBtn">
+            Enviar por WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+      const modal = document.getElementById('modal');
+      const btn = document.querySelector('.btn-cita');
+      const closeBtn = document.getElementById('closeModal');
+
+      // Abrir modal
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'block';
+      });
+
+      // Cerrar modal
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      // Cerrar al hacer clic fuera
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      // Enviar por WhatsApp
+      const enviarBtn = document.getElementById('enviarBtn');
+      enviarBtn.addEventListener('click', () => {
+        const nombre = document.getElementById('nombre').value;
+        const contacto = document.getElementById('contacto').value;
+        const servicio = document.getElementById('servicio').value;
+
+        if (!nombre || !contacto) {
+          alert('Por favor, completá tu nombre y contacto.');
+          return;
+        }
+
+        const mensaje = `Hola! Mi nombre es ${nombre}. Me gustaría reservar un turno para ${servicio}. Podés contactarme a ${contacto}.`;
+        const url = `https://wa.me/59892301335?text=${encodeURIComponent(
+          mensaje
+        )}`;
+        window.open(url, '_blank');
+        modal.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>
